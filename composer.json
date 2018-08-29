@@ -1,0 +1,69 @@
+{
+  "name": "omz13/kirby3-suncyclepages",
+  "version": "0.0.0",
+  "description": "kirby3 plugin to embargo pages until sunrise and withdraw at sunset",
+  "license": "MIT",
+  "keywords": [
+    "kirby3",
+    "plugin",
+    "sunset"
+  ],
+  "autoload": {
+    "files": [
+      "src/config.php"
+    ],
+    "psr-4": {
+      "omz13\\": "src/"
+    }
+  },
+  "authors": [{
+    "name": "David Somers",
+    "email": "dsomers@omz13.com",
+    "homepage": "https://meldingstuff.com",
+    "role": "Developer"
+  }],
+  "repositories": [{
+    "type": "vcs",
+    "url": "https://github.com/k-next/kirby"
+  }],
+  "require": {
+    "php": ">=7.1",
+    "getkirby/cms": "dev-master as 3.0.0"
+  },
+  "scripts": {
+    "style": "phpcs --standard=./ruleset.xml ./src/*",
+    "mess" : "phpmd ./src text codesize,controversial,design,unusedcode",
+    "sanity": [
+      "@style",
+      "@mess"
+    ],
+    "fix": "phpcbf --standard=./ruleset.xml ./src/*",
+    "build": [
+      "@sanity",
+      "composer dumpautoload -o"
+    ],
+    "zip": [
+      "composer remove getkirby/cms",
+      "composer dumpautoload -o",
+      "composer archive --format=zip --dir=dist",
+      "composer require getkirby/cms:'dev-master as 3.0.0'",
+      "composer dumpautoload -o"
+    ]
+  },
+  "archive": {
+    "exclude": [
+      ".*",
+      "makefile",
+      "*.xml",
+      "!/vendor/*",
+      "/vendor/*/*/.*",
+      "/vendor/*/*/docs/*",
+      "/vendor/*/*/example/*",
+      "/vendor/*/*/examples/*",
+      "/vendor/*/*/test/*",
+      "/vendor/*/*/tests/*",
+      "/vendor/*/*/php4/*"
+  ]
+  },
+  "minimum-stability": "beta"
+}
