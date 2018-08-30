@@ -3,8 +3,15 @@
 Kirby::plugin(
 'omz13/suncyclepages',
   [
+    'options' => [
+      'disable' => false,
+    ],
     'hooks'        => [
         'route:after' => function ($route, $path, $method, $result) {
+
+            if (omz13\suncyclepages::isEnabled()==false)
+              return false;
+
             if (!isset($result) || !property_exists($result, 'content')) {
                 return;
             }
@@ -29,6 +36,8 @@ Kirby::plugin(
     ],
     'pageMethods'  => [
         'issunset'       => function () {
+            if (omz13\suncyclepages::isEnabled()==false)
+              return false;
             $timestamp = strtotime($this->content()->sunset());
             if ($timestamp != 0 && $timestamp < time()) {
                 return true;
@@ -37,6 +46,8 @@ Kirby::plugin(
             return false;
         },
         'isunderembargo' => function () {
+            if (omz13\suncyclepages::isEnabled()==false)
+              return false;
             $timestamp = strtotime($this->content()->embargo());
             if ($timestamp != 0 && time() < $timestamp) {
                 return true;
