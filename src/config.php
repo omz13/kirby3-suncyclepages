@@ -48,11 +48,13 @@ Kirby::plugin(
         'isunderembargo' => function () {
             if (omz13\suncyclepages::isEnabled()==false)
               return false;
-            $timestamp = strtotime($this->content()->embargo());
-            if ($timestamp != 0 && time() < $timestamp) {
-                return true;
+            if ($this->content()->embargo() == "true")
+            {
+              $timestamp = strtotime($this->content()->date());
+              if ($timestamp != 0 && time() < $timestamp) {
+                  return true;
+              }
             }
-
             return false;
         },
     ],
