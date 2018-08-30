@@ -1,7 +1,7 @@
 <?php
 
 Kirby::plugin(
-'omz13/sunsetpages',
+'omz13/suncyclepages',
   [
     'hooks'        => [
         'route:after' => function ($route, $path, $method, $result) {
