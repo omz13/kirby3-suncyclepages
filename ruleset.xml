@@ -38,6 +38,9 @@
         <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
         <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
         <exclude name="Squiz.Classes.ClassFileName.NoMatch" />
+        <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue" />
+        <exclude name="Squiz.NamingConventions.ValidFunctionName.PrivateNoUnderscore" />
+        <exclude name="Squiz.PHP.DisallowInlineIf.Found" />
 
     </rule>
 
@@ -57,6 +60,10 @@
 
     <rule ref="Generic.Commenting.Todo.TaskFound">
       <exclude name="Generic.Commenting.Todo.TaskFound" />
+    </rule>
+
+    <rule ref="Generic.Commenting.DocComment.MissingShort">
+      <exclude name="Generic.Commenting.DocComment.MissingShort" />
     </rule>
 
 </ruleset>
