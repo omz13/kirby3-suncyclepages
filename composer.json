@@ -1,12 +1,14 @@
 {
   "name": "omz13/kirby3-suncyclepages",
   "version": "0.0.0",
-  "description": "kirby3 plugin to embargo pages until sunrise and withdraw at sunset",
+  "description": "kirby3 plugin to embargo pages until sunrise date and withdraw at sunset date",
   "license": "MIT",
   "keywords": [
     "kirby3",
     "plugin",
-    "sunset"
+    "sunset",
+    "sunrise",
+    "embargo"
   ],
   "autoload": {
     "files": [
