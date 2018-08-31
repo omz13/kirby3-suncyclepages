@@ -9,6 +9,9 @@ Kirby::plugin(
     'hooks'        => [
         'route:after' => function ($route, $path, $method, $result) {
 
+            if($route->env() != 'site')
+              return;
+
             if (omz13\suncyclepages::isEnabled()==false)
               return false;
 
@@ -18,8 +21,11 @@ Kirby::plugin(
 
             if ($result->hasMethod('issunset') == true) {
                 if ($result->issunset() == true) {
+                  $to = $result->content()->sunsetto();
+                  if (isset($to) && $to!="")
+                    go($to, 301);
                   // 410 = Gone.
-                  echo Kirby\Cms\Response::errorPage([],'html',410);
+                  echo Kirby\Cms\Response::errorPage([],'html',410,["X-SUNNY"=>"isSunset"]);
                   die;
                 }
             }
