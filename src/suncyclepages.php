@@ -20,16 +20,24 @@ class SunCyclePages
 
     }//end ping()
 
-    public static function getConfigurationForKey(string $key, $default = null) {
-      $o = option('omz13.suncyclepages.' . $key);
 
-      if (isset($o)==true)
-        return $o;
-      return $default;
+    public static function getConfigurationForKey(string $key, $default=null)
+    {
+        $o = option('omz13.suncyclepages.' . $key);
+
+        if (isset($o) == true) {
+            return $o;
+        }
+
+        return $default;
+
     }
 
-    public static function isEnabled(): bool {
-      return static::getConfigurationForKey('disable',false) != true;
+
+    public static function isEnabled(): bool
+    {
+        return static::getConfigurationForKey('disable', false) != true;
+
     }
 
 

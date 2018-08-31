@@ -55,6 +55,8 @@
       <exclude name="Generic.Files.LineLength"/>
     </rule>
 
-    <!-- phpmd CamelCaseClassName -->
+    <rule ref="Generic.Commenting.Todo.TaskFound">
+      <exclude name="Generic.Commenting.Todo.TaskFound" />
+    </rule>
 
 </ruleset>
