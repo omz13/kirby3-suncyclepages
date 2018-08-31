@@ -6,7 +6,7 @@
 
 namespace omz13;
 
-define('SUNCYCLE_VERSION', '0.0.0');
+define('SUNCYCLE_VERSION', '0.1.0');
 
 class SunCyclePages
 {
