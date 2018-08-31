@@ -26,8 +26,9 @@ Kirby::plugin(
 
             if ($result->hasMethod('isunderembargo') == true) {
                 if ($result->isunderembargo() == true) {
-                  // TODO: remove 418 = teapot
-                  echo Kirby\Cms\Response::errorPage([],'html',418);
+                  // TODO: document: in debug mode, return 418... otherwise standard 404.
+                  $rc = (kirby()->option('debug') !== null && kirby()->option('debug') == true) ? 418 : 404;
+                  echo Kirby\Cms\Response::errorPage([],'html',$rc);
                   die;
                 }
             }
