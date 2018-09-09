@@ -32,20 +32,37 @@
     "php": ">=7.1",
     "getkirby/cms": "dev-master as 3.0.0"
   },
+  "require-dev": {
+  "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+  "jakub-onderka/php-parallel-lint": "^1.0",
+  "omz13/omz13-coding-standard": "dev-master",
+  "phpmd/phpmd": "^2.6",
+  "phpstan/phpstan": "^0.10.3",
+  "roave/security-advisories": "dev-master"
+  },
   "scripts": {
-    "style": "phpcs --standard=./ruleset.xml ./src/*",
-    "mess" : "phpmd ./src text codesize,controversial,design,unusedcode",
+    "lint": "./vendor/bin/parallel-lint ./src/*",
+    "style": "./vendor/bin/phpcs ./src/*",
+    "mess": "./vendor/bin/phpmd ./src text codesize,controversial,design,unusedcode",
+    "stan": "./vendor/bin/phpstan analyse --level 7 ./src",
     "sanity": [
-      "@style",
+      "make tools",
+      "@lint",
+      "./vendor/bin/phpcs -n ./src/*",
+      "@stan",
       "@mess"
     ],
-    "fix": "phpcbf --standard=./ruleset.xml ./src/*",
+    "fix": [
+      "./vendor/bin/phpcbf ./src/*",
+      "./vendor/bin/phpcs -s ./src/*"
+    ],
     "build": [
       "@sanity",
       "composer dumpautoload -o"
     ],
     "zip": [
       "composer remove getkirby/cms",
+      "composer install --no-dev",
       "composer dumpautoload -o",
       "composer archive --format=zip --dir=dist",
       "composer require getkirby/cms:'dev-master as 3.0.0'",
