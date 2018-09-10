@@ -59,8 +59,9 @@ zip: tools
 	composer run-script zip
 
 release: tools
+	$(if $(shell composer global show | grep localheinz/composer-normalize; if [ $$? -eq 1 ] ; then exit 1 ; fi), , $(error Need to do: composer global install localheinz/composer-normalize))
 ifndef PHPRMT
-	  $(error "php release management tool (rmt) is not available; try composer global require liip/rmt")
+	$(error "php release management tool (rmt) is not available; try composer global require liip/rmt")
 endif
 	./RMT release
 	composer run-script zip
