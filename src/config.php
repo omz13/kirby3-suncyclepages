@@ -1,104 +1,119 @@
 <?php
 
+// phpcs:disable PHPCompatibility.PHP.NewClosure.ThisFoundOutsideClass
+
 Kirby::plugin(
     'omz13/suncyclepages',
     [
-        'options'      => ['disable' => false],
-        'hooks'        => [
-            'route:after' => function ($route, $path, $method, $result) {
-                if ($route->env() != 'site') {
-                    return;
+      'root'         => dirname( __FILE__, 2 ),
+      'options'      => ['disable' => false],
+      'hooks'        => [
+        // phpcs:ignore
+        'route:after' => function ( $route, string $path, string $method, $result ) {
+
+          if ( $route->env() != 'site' ) {
+              return;
+          }
+
+          assert( $result instanceof Kirby\Cms\Page );
+
+          if ( omz13\SunCyclePages::isEnabled() == false ) {
+              return false;
+          }
+
+          if ( property_exists( $result, 'content' ) == false ) {
+              return;
+          }
+
+          // belt-and-braces guarding
+          if ( $result->hasMethod( 'issunset' ) == true ) {
+            if ( $result->callMethod( 'issunset' ) == true ) {
+              if ( $result->content()->has( 'sunsetto' ) ) {
+                $to = $result->content()->get( 'sunsetto' );
+                if ( kirby()->option( 'debug' ) == 'true' ) {
+                  header( 'X-SUNCYCLE: isSunset to ' );
                 }
-
-                if (omz13\suncyclepages::isEnabled() == false) {
-                    return false;
+                if ( $to != "" ) {
+                  go( $to, 301 );
                 }
+              }
 
-                if (!isset($result) || !property_exists($result, 'content')) {
-                    return;
-                }
+              // because
+              header( 'X-SUNCYCLE: isSunset' );
+              // 410 = Gone.
+              echo Kirby\Cms\Response::errorPage( [], 'html', 410 );
+              die;
+            }//end if
+          }//end if
 
-                if ($result->hasMethod('issunset') == true) {
-                    if ($result->issunset() == true) {
-                        $to = $result->content()->sunsetto();
-                        if (isset($to) == true && $to != '') {
-                            go($to, 301);
-                        }
+          if ( $result->hasMethod( 'isunderembargo' ) == true ) {
+            if ( $result->callMethod( 'isunderembargo' ) == true ) {
+              if ( kirby()->option( 'debug' ) == 'true' ) {
+                header( 'X-SUNCYCLE: isUnderembargo' );
+                $rc = 418;
+              } else {
+                  $rc = 404;
+              }
 
-                        // 410 = Gone.
-                        echo Kirby\Cms\Response::errorPage([], 'html', 410, ['X-SUNNY' => 'isSunset']);
-                        die;
-                    }
-                }
+              echo Kirby\Cms\Response::errorPage( [], 'html', $rc );
+              die;
+            }
+          }
+        },
+      ],
+      'pageMethods'  => [
+        'issunset'       => function () {
+          if ( omz13\SunCyclePages::isEnabled() == false ) {
+              return false;
+          }
 
-                if ($result->hasMethod('isunderembargo') == true) {
-                    if ($result->isunderembargo() == true) {
-                        if (kirby()->option('debug') == 'true') {
-                            $rc = 418;
-                        } else {
-                            $rc = 404;
-                        }
+          $timestamp = strtotime( $this->content()->get( 'sunset' ) );
+          if ( $timestamp != 0 && $timestamp < time() ) {
+              return true;
+          }
 
-                        echo Kirby\Cms\Response::errorPage([], 'html', $rc);
-                        die;
-                    }
-                }
-            },
-        ],
-        'pageMethods'  => [
-            'issunset'       => function () {
-                if (omz13\suncyclepages::isEnabled() == false) {
-                    return false;
-                }
+          return false;
+        },
+        'isunderembargo' => function () {
+          if ( omz13\SunCyclePages::isEnabled() == false ) {
+              return false;
+          }
 
-                $timestamp = strtotime($this->content()->sunset());
-                if ($timestamp != 0 && $timestamp < time()) {
-                    return true;
-                }
+          if ( $this->content()->get( 'embargo' ) == 'true' ) {
+            $timestamp = strtotime( $this->content()->get( 'date' ) );
+            if ( $timestamp != 0 && time() < $timestamp ) {
+                return true;
+            }
+          }
 
-                return false;
-            },
-            'isunderembargo' => function () {
-                if (omz13\suncyclepages::isEnabled() == false) {
-                    return false;
-                }
+            return false;
+        },
+      ],
+      'pagesMethods' => [
+        'isunderembargo' => function ( $match = true ) {
+          if ($match) { // phpcs:ignore
+                return $this->filterBy( 'isunderembargo', true );
+          }
 
-                if ($this->content()->embargo() == 'true') {
-                    $timestamp = strtotime($this->content()->date());
-                    if ($timestamp != 0 && time() < $timestamp) {
-                        return true;
-                    }
-                }
+            return $this->filterBy( 'isunderembargo', '!=', true );
+        },
+        'issunset'       => function ( $match = true ) {
+          if ($match) {  // phpcs:ignore
+                return $this->filterBy( 'issunset', true );
+          }
 
-                return false;
-            },
-        ],
-        'pagesMethods' => [
-            'isunderembargo' => function ($match=true) {
-            if ($match) { // phpcs:ignore
-                    return $this->filterBy('isunderembargo', true);
-                }
-
-                return $this->filterBy('isunderembargo', '!=', true);
-            },
-
-            'issunset'       => function ($match=true) {
-            if ($match) {  // phpcs:ignore
-                        return $this->filterBy('issunset', true);
-                }
-
-                return $this->filterBy('issunset', '!=', true);
-            },
-        ],
-        'collections'  => [
-            'isunderembargo' => function ($site) {
-                return $site->index()->isunderembargo();
-            },
-            'issunsetted'    => function ($site) {
-                        return $site->index()->issunset();
-            },
-        ],
+            return $this->filterBy( 'issunset', '!=', true );
+        },
+      ],
+      'collections'  => [
+        'isunderembargo' => function ( $site ) {
+            return $site->index()->isunderembargo();
+        },
+        'issunsetted'    => function ( $site ) {
+            return $site->index()->issunset();
+        },
+      ],
     ]
 );
 
-require_once __DIR__.'/suncyclepages.php';
+require_once __DIR__ . '/suncyclepages.php';

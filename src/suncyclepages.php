@@ -6,39 +6,32 @@
 
 namespace omz13;
 
-define('SUNCYCLE_VERSION', '0.1.0');
+use const SUNCYCLE_VERSION;
+
+use function define;
+use function kirby;
+
+define( 'SUNCYCLE_VERSION', '0.1.0' );
 
 class SunCyclePages
 {
+  public static $version = SUNCYCLE_VERSION;
 
-    public static $version = SUNCYCLE_VERSION;
+  public static function ping() : string {
+      return static::class . ' pong ' . static::$version;
+  }//end ping()
 
+  public static function getConfigurationForKey( string $key, ?string $default = null ) : string {
+    $o = kirby()->option( 'omz13.suncyclepages.' . $key );
 
-    public static function ping(): string
-    {
-        return static::class.' pong '.static::$version;
-
-    }//end ping()
-
-
-    public static function getConfigurationForKey(string $key, $default=null)
-    {
-        $o = option('omz13.suncyclepages.' . $key);
-
-        if (isset($o) == true) {
-            return $o;
-        }
-
-        return $default;
-
+    if ( isset( $o ) == true ) {
+      return $o;
     }
 
+    return $default;
+  }//end getConfigurationForKey()
 
-    public static function isEnabled(): bool
-    {
-        return static::getConfigurationForKey('disable', false) != true;
-
-    }
-
-
+  public static function isEnabled() : bool {
+    return static::getConfigurationForKey( 'disable', false ) != true;
+  }//end isEnabled()
 }//end class
