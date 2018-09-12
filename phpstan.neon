@@ -5,6 +5,8 @@ parameters:
 	polluteScopeWithLoopInitialAssignments: true
 	earlyTerminatingMethodCalls: []
 	universalObjectCratesClasses: []
-	ignoreErrors: []
+	ignoreErrors:
+		- '#Undefined variable: \$this#'
+		- '#Using \$this outside a class.#'
 	tmpDir: %rootDir%/tmp
 	level: 5
