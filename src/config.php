@@ -92,14 +92,14 @@ Kirby::plugin(
                 return $this->filterBy( 'isunderembargo', true );
           }
 
-            return $this->filterBy( 'isunderembargo', '!=', true );
+          return $this->filterBy( 'isunderembargo', '!=', true );
         },
         'issunset'       => function ( $match = true ) {
           if ($match) {  // phpcs:ignore
                 return $this->filterBy( 'issunset', true );
           }
 
-            return $this->filterBy( 'issunset', '!=', true );
+          return $this->filterBy( 'issunset', '!=', true );
         },
       ],
       'collections'  => [
