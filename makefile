@@ -45,11 +45,14 @@ build: tools
 	composer validate
 	composer run-script build
 
+fix: tools
+	composer fix
+
 style: tools
 	composer style
 
-fix: tools
-	composer fix
+stan: tools
+	composer stan
 
 sanity: tools
 	composer validate
