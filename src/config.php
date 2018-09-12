@@ -76,6 +76,8 @@ Kirby::plugin(
               return false;
           }
 
+          assert( $this instanceof Kirby\Cms\Page );
+
           if ( $this->content()->get( 'embargo' ) == 'true' ) {
             $timestamp = strtotime( $this->content()->get( 'date' ) );
             if ( $timestamp != 0 && time() < $timestamp ) {
