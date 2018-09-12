@@ -50,12 +50,9 @@ Kirby::plugin(
             if ( $result->callMethod( 'isunderembargo' ) == true ) {
               if ( kirby()->option( 'debug' ) == 'true' ) {
                 header( 'X-SUNCYCLE: isUnderembargo' );
-                $rc = 418;
-              } else {
-                  $rc = 404;
               }
 
-              echo Kirby\Cms\Response::errorPage( [], 'html', $rc );
+              echo Kirby\Cms\Response::errorPage( [], 'html', 404 );
               die;
             }
           }
