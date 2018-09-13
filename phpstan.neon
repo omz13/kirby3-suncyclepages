@@ -8,5 +8,7 @@ parameters:
 	ignoreErrors:
 		- '#Undefined variable: \$this#'
 		- '#Using \$this outside a class.#'
+		- '#Parameter \#[\d]+ of function [a-zA-Z]+ expects string|null, array|Kirby\\Cms\\Field given.#'
+		- '#Binary operation "." between [.]+ and array|Kirby\\Cms\\Field results in an error.#'
 	tmpDir: %rootDir%/tmp
 	level: 5
