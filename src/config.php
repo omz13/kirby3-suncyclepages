@@ -31,7 +31,7 @@ Kirby::plugin(
               if ( $result->content()->has( 'sunsetto' ) ) {
                 $to = $result->content()->get( 'sunsetto' );
                 if ( kirby()->option( 'debug' ) == 'true' ) {
-                  header( 'X-SUNCYCLE: isSunset to ' );
+                  header( 'X-SUNCYCLE: isSunset to ' . $to );
                 }
                 if ( $to != "" ) {
                   go( $to, 301 );
