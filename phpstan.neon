@@ -12,3 +12,5 @@ parameters:
 		- '#Binary operation "." between [.]+ and array|Kirby\\Cms\\Field results in an error.#'
 	tmpDir: %rootDir%/tmp
 	level: 5
+includes:
+	- vendor/phpstan/phpstan-strict-rules/rules.neon

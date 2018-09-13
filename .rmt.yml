@@ -37,8 +37,6 @@ master:
             tag-prefix: ''         # No more prefix for tags
     pre-release-actions:
         composer-update: ~
-        command:
-          cmd: composer normalize
         update-version-class:
             class: omz13\suncyclepages
         changelog-update:          # Update a CHANGELOG file before the release
