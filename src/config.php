@@ -21,7 +21,7 @@ Kirby::plugin(
               return false;
           }
 
-          if ( property_exists( $result, 'content' ) == false ) {
+          if ( isset( $result ) == false || property_exists( $result, 'content' ) == false ) {
               return;
           }
 
