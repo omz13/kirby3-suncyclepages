@@ -2,5 +2,23 @@
 VERSION 0  ALPHA RELEASE
 ========================
 
+   Version 0.2 - beta release
+      23/09/2018 14:44  0.2.0  initial release
+         ec1a32a Chore: update lock
+         e3656f8 Feature: embargoCheckWhenTemplateIs, embargoCheckWhenParentIs
+         e4d5c81 Fix: add guard
+         173f5a2 Chore: stan goes strict and tweak release process
+         1d31cc7 Chore: squash stan false positives
+         1708040 Fix: show raw to in header
+         a292e61 Chore: guard
+         f32678c Chore: style
+         930fa24 Fix: no need for 418 (see header), so always 404
+         921b975 Chore: ignore $this related errors until phpstan understands magic
+         6f94c08 Chore: because I can’t type composer, use make
+         a360187 Refactor: phpstan happiness and style update
+         889a0af Chore: automagically normalize composer.json
+         b4c7656 Chore: update cs
+         78440ea Chore: update and apply coding ruleset
+
    Version 0.1 - alpha release
       31/08/2018 17:21  0.1.0  initial release

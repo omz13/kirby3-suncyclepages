@@ -14,7 +14,7 @@ use function define;
 use function is_array;
 use function kirby;
 
-define( 'SUNCYCLE_VERSION', '0.1.0' );
+define( 'SUNCYCLE_VERSION', '0.2.0' );
 define( 'SUNCYCLE_CONFIGURATION_PREFIX', 'omz13.suncyclepages' );
 
 
