@@ -10,6 +10,7 @@ parameters:
 		- '#Using \$this outside a class.#'
 		- '#Parameter \#[\d]+ of function [a-zA-Z]+ expects string|null, array|Kirby\\Cms\\Field given.#'
 		- '#Binary operation "." between [.]+ and array|Kirby\\Cms\\Field results in an error.#'
+		- '#Call to function in_array\(\) requires parameter \#[\d]+ to be true.#'
 	tmpDir: %rootDir%/tmp
 	level: 5
 includes:

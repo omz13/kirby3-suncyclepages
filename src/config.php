@@ -6,7 +6,11 @@ Kirby::plugin(
     'omz13/suncyclepages',
     [
       'root'         => dirname( __FILE__, 2 ),
-      'options'      => ['disable' => false],
+      'options'      => [
+        'disable' => false,
+        'embargoCheckWhenTemplateIs' => [ 'article', 'pfo-article' ],
+        'embargoCheckWhenParentIs' => [ 'blog' ],
+      ],
       'hooks'        => [
         // phpcs:ignore
         'route:after' => function ( $route, string $path, string $method, $result ) {
@@ -21,7 +25,7 @@ Kirby::plugin(
               return false;
           }
 
-          if ( isset( $result ) == false || property_exists( $result, 'content' ) == false ) {
+          if ( /* isset( $result ) == false || */ property_exists( $result, 'content' ) == false ) {
               return;
           }
 
@@ -61,27 +65,33 @@ Kirby::plugin(
       'pageMethods'  => [
         'issunset'       => function () {
           if ( omz13\SunCyclePages::isEnabled() == false ) {
-              return false;
+            return false;
           }
 
           $timestamp = strtotime( $this->content()->get( 'sunset' ) );
           if ( $timestamp != 0 && $timestamp < time() ) {
-              return true;
+            return true;
           }
 
           return false;
         },
         'isunderembargo' => function () {
           if ( omz13\SunCyclePages::isEnabled() == false ) {
-              return false;
+            return false;
           }
 
           assert( $this instanceof Kirby\Cms\Page );
 
-          if ( $this->content()->get( 'embargo' ) == 'true' ) {
+          if ( $this->content()->get( 'skipembargo' ) == 'true' ) {
+            return false;
+          }
+          if ( in_array( $this->parent(), omz13\SunCyclePages::getArrayConfigurationForKey( 'embargoCheckWhenParentIs' ), false ) == true
+            || in_array( $this->intendedTemplate(), omz13\SunCyclePages::getArrayConfigurationForKey( 'embargoCheckWhenTemplateIs' ), false ) == true
+            || $this->content()->get( 'embargo' ) == 'true'
+            ) {
             $timestamp = strtotime( $this->content()->get( 'date' ) );
             if ( $timestamp != 0 && time() < $timestamp ) {
-                return true;
+              return true;
             }
           }
 
@@ -91,14 +101,14 @@ Kirby::plugin(
       'pagesMethods' => [
         'isunderembargo' => function ( $match = true ) {
           if ($match) { // phpcs:ignore
-                return $this->filterBy( 'isunderembargo', true );
+            return $this->filterBy( 'isunderembargo', true );
           }
 
           return $this->filterBy( 'isunderembargo', '!=', true );
         },
         'issunset'       => function ( $match = true ) {
           if ($match) {  // phpcs:ignore
-                return $this->filterBy( 'issunset', true );
+            return $this->filterBy( 'issunset', true );
           }
 
           return $this->filterBy( 'issunset', '!=', true );
@@ -106,10 +116,10 @@ Kirby::plugin(
       ],
       'collections'  => [
         'isunderembargo' => function ( $site ) {
-            return $site->index()->isunderembargo();
+          return $site->index()->isunderembargo();
         },
         'issunsetted'    => function ( $site ) {
-            return $site->index()->issunset();
+          return $site->index()->issunset();
         },
       ],
     ]
