@@ -25,7 +25,11 @@ Kirby::plugin(
               return false;
           }
 
-          if ( /* isset( $result ) == false || */ property_exists( $result, 'content' ) == false ) {
+          if ( $result == null ) { // hmmm... requested page not found (not in kirby content)
+            return;
+          }
+
+          if ( property_exists( $result, 'content' ) == false ) {
               return;
           }
 
