@@ -9,8 +9,9 @@
 For a kirby3 site, this plugin [omz13/suncyclepages](https://github.com/omz13/kirby3-suncyclepages) allows the lifecycle of page to be controlled vis-à-vis pages becoming generally available at a sunrise date and withdrawn at a sunset date.
 
 - Only pages that have a status of "published" are affected, i.e. those with "draft" or "unpublished" behave as usual.
-- Pages can be embargoed until being made generally available a specified date ("sunrise"). Any attempt to view the page before that date will yield the standard error page and a 404 [Not Found] code; note that if Kirby is in debug mode, a 417 is given instead.
+- Pages can be embargoed until being made generally available a specified date ("sunrise"). Any attempt to view the page before that date will yield the standard error page and a 404 [Not Found] code.
 - Pages can be withdrawn at a specific date ("sunset"). Any attempt to view the page after that date will yield a 410 [Gone] and the standard error page, or a 301 [Moved Permanently] to a specified location.
+- A debug mode can be enabled to include a header in the response to indicate that a page was under embargo or has sunset, c.f. `X-SUNCYCLE`.
 
 #### Caveat
 
@@ -76,6 +77,14 @@ The plugin uses the following content fields. These are all optional; if missing
 - `sunset` : a date which, if specified, is the date after which the page is to be sunset (withdrawn).
 
 - `sunsetto` : the name of a page to be used for redirects when the page is sunset
+
+#### Debug mode
+
+If the kirby site is in debug mode:
+
+- If a page is embargoed (waiting for sunrise), the `404` page will include an additional header `X-SUNCYCLE: isUnderembargo`.
+
+- If a page has been withdrawn (sunset), the `410` response will include an additional header `X-SUNCYCLE: isSunset`, and the `301` a `X-SUNCYCLE: isSunset <to>` where `<to>` is the name of the `sunsetto` page.
 
 #### Example Blueprint
 
