@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cb5ccfa906a80e1a4593c0d7c65f8df",
+    "content-hash": "2bd5091bb086d0a10c9ee5e789c12923",
     "packages": [
         {
             "name": "claviska/simpleimage",
@@ -208,12 +208,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/k-next/kirby.git",
-                "reference": "08072cbccaecf1fe3ff3ddf1a485249397b9379d"
+                "reference": "e4d2f3f0b44f7bb2acbd4d07c8176a19b2483d30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/k-next/kirby/zipball/08072cbccaecf1fe3ff3ddf1a485249397b9379d",
-                "reference": "08072cbccaecf1fe3ff3ddf1a485249397b9379d",
+                "url": "https://api.github.com/repos/k-next/kirby/zipball/e4d2f3f0b44f7bb2acbd4d07c8176a19b2483d30",
+                "reference": "e4d2f3f0b44f7bb2acbd4d07c8176a19b2483d30",
                 "shasum": ""
             },
             "archive": {
@@ -309,7 +309,7 @@
                 "forum": "https://forum.getkirby.com",
                 "source": "https://github.com/getkirby/kirby"
             },
-            "time": "2018-09-21T14:43:46+00:00"
+            "time": "2018-09-26T15:36:20+00:00"
         },
         {
             "name": "league/color-extractor",
@@ -2430,16 +2430,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "4.8.0",
+            "version": "4.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "7b33fb140a8ee1502754c4c8dc44c3082746f30c"
+                "reference": "32e1ca205fc34920f323582ed29c0602e3897ae3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/7b33fb140a8ee1502754c4c8dc44c3082746f30c",
-                "reference": "7b33fb140a8ee1502754c4c8dc44c3082746f30c",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/32e1ca205fc34920f323582ed29c0602e3897ae3",
+                "reference": "32e1ca205fc34920f323582ed29c0602e3897ae3",
                 "shasum": ""
             },
             "require": {
@@ -2465,20 +2465,20 @@
                 "MIT"
             ],
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
-            "time": "2018-09-19T22:49:38+00:00"
+            "time": "2018-09-25T21:21:11+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.3.1",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "628a481780561150481a9ec74709092b9759b3ec"
+                "reference": "6ad28354c04b364c3c71a34e4a18b629cc3b231e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/628a481780561150481a9ec74709092b9759b3ec",
-                "reference": "628a481780561150481a9ec74709092b9759b3ec",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6ad28354c04b364c3c71a34e4a18b629cc3b231e",
+                "reference": "6ad28354c04b364c3c71a34e4a18b629cc3b231e",
                 "shasum": ""
             },
             "require": {
@@ -2516,7 +2516,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-07-26T23:47:18+00:00"
+            "time": "2018-09-23T23:08:17+00:00"
         },
         {
             "name": "symfony/config",

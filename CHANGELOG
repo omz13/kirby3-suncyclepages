@@ -3,6 +3,10 @@ VERSION 0  ALPHA RELEASE
 ========================
 
    Version 0.2 - beta release
+      26/09/2018 18:40  0.2.1  beta release
+         e3587c5 Chore: refactor composer
+         344c07b Docs: detail debug headers
+         b52f138 Fix: guard
       23/09/2018 14:44  0.2.0  initial release
          ec1a32a Chore: update lock
          e3656f8 Feature: embargoCheckWhenTemplateIs, embargoCheckWhenParentIs
