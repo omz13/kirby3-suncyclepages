@@ -88,8 +88,8 @@
     "stan": "./vendor/bin/phpstan analyse --level 7 ./src",
     "style": "./vendor/bin/phpcs ./src/*",
     "zip": [
-      "composer remove getkirby/cms",
       "composer install --no-dev",
+      "composer remove getkirby/cms",
       "composer dumpautoload -o",
       "composer archive --format=zip --dir=dist",
       "composer require getkirby/cms:'dev-master as 3.0.0'",
