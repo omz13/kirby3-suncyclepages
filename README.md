@@ -6,12 +6,25 @@
 
 ### Purpose
 
-For a kirby3 site, this plugin [omz13/suncyclepages](https://github.com/omz13/kirby3-suncyclepages) allows the _lifecycle_ of page to be controlled vis-à-vis pages becoming generally available at a sunrise date and withdrawn at a sunset date. This enhances the limited lifecycle options provied by kirby3's `state` (unpublished, draft, and published) to better match that needed certain editorial or regulatory needs, viz: unpublished, draft, embargoed (waiting "sunrise"), published ("sunny"), withdrawn ("sunset").
+For a kirby3 site, this plugin [omz13/suncyclepages](https://github.com/omz13/kirby3-suncyclepages) allows more granular control over the _lifecycle_ of a page to be achieved vis-à-vis pages becoming generally available at a sunrise date and to be withdrawn at a sunset date. This enhances the limited lifecycle options provied by kirby3's `state` (unpublished, draft, and published) to better match that needed certain editorial or regulatory needs, _viz._, unpublished, draft, embargoed (waiting "sunrise"), published ("sunny"), withdrawn ("sunset").
+
+When would you use this plugin?
+
+- The main usecase is for writing blog posts that you want to publish in the future. Write them now, and schedule them to apepar (sunrise) in the future. Ideal for those times when you are away but want to continue a publishing schedule.
+- Another usecase is for temporary offers or notices. You publish a page, but in the future you want it removed (sunset), or better yet, want it removed and replaced (redirected) to elsewhere that says "too late" (or whatever).
+
+The functional specification:
 
 - Only pages that have a status of "published" are affected, i.e. those with "draft" or "unpublished" behave as usual.
 - Pages can be embargoed until being made generally available a specified date ("sunrise"). Any attempt to view the page before that date will yield the standard error page and a `404` [Not Found] code.
 - Pages can be withdrawn at a specific date ("sunset"). Any attempt to view the page after that date will yield a `410` [Gone] and the standard error page, or, a `301` [Moved Permanently] to a specified location on a per-page basis.
 - A debug mode can be enabled to include a header in the response to indicate that a page was under embargo or has sunset, c.f. `X-SUNCYCLE`.
+
+#### Why call it suncycle?
+
+There are perhaps, with the benefit of hindsight, betters names such as 'embargo', 'autopublish', 'schedule', etc. However, when this plugin was developed the notion was to follow the lifecycle of a page: sunrise and sunset are well-known terms within SDLC or ILM (although very much less familiar outside this domain), and 'suncycle' was used. I had my head in software mode not journalism mode; it could also be argued that unless you are familiar with  publishing and journalism, terms such as 'embargo' and 'schedule' are also unusual outside that domain.
+
+TL;DR: its just a name. Who care's what its called as long as it works. Now [go get me a coffee](https://buymeacoff.ee/omz13) ;-).
 
 #### Caveat
 
@@ -19,7 +32,7 @@ Kirby3 is under beta, therefore this plugin, and indeed kirby3 itself, may or ma
 
 #### Roadmap
 
-For 1.0, the non-binding list of planned features and implementation notes are:
+The non-binding list of planned features and implementation notes are:
 
 - [x] MVP
 - [x] Basic debugging
@@ -70,6 +83,8 @@ The following mechanisms can be used to modify the plugin's behavior.
 
 The plugin uses the following content fields. These are all optional; if missing or empty, they are assumed to be not applicable vis-à-via their indicated functionality.
 
+- `date` - date - optional - the date when the page is to be published, i.e. embargo until this date. If the date field is missing or cannot be resolved, the emargo check will not embargo the page, i.e. failsafe is to not embargo but publish.
+
 - `skipembargo` - boolean - optional (default `false`) - if `true`, the embargo check (sunrise) is skipped (not performed) for this page.
 
 - `embargo` - boolean -  optional (default `false`) - gf `true`, the embargo check (sunrise) should be explicitly performed against this page. This is intended to be used on pages where such checking is not normally done, i.e. not explicitly done due to parent (c.f. `omz13.suncyclepages.embargoCheckWhenParentIs`) or template (c.f. `omz13.suncyclepages.embargoCheckWhenTemplateIs`).
@@ -116,7 +131,7 @@ sunsetto:
 
 #### Example Use in a collection
 
-In the kirby3 starterkit you don't want the list of blog post to include any that are under embaego (waiting sunrise) or are sunset... it is very simple to implement.
+In the kirby3 starterkit you don't want the list of blog post to include any that are under embargo (waiting sunrise) or are sunset... it is very simple to implement.
 
 `site/collections/articles.php` looks like this:
 
