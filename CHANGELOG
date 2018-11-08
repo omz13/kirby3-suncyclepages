@@ -2,6 +2,13 @@
 VERSION 0  ALPHA RELEASE
 ========================
 
+   Version 0.3 - beta release
+      08/11/2018 17:25  0.3.0  initial release
+         b70321f Chore: composer update
+         fc1d282 Fix: update guard to cope with ML site
+         95f5983 Docs: Add use cases. Closes #1.
+         0adc299 Docs: edits for clarity
+
    Version 0.2 - beta release
       26/09/2018 18:40  0.2.1  beta release
          e3587c5 Chore: refactor composer
