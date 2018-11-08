@@ -19,14 +19,17 @@ Kirby::plugin(
               return;
           }
 
-          assert( $result instanceof Kirby\Cms\Page );
+          if ( $result == null ) { // hmmm... requested page not found (not in kirby content)
+            return;
+          }
+
+          if ( ! ( $result instanceof Kirby\Cms\Page ) ) {
+            // Ignore it because not a page; very probably a Kirby\Cms\Response
+            return;
+          }
 
           if ( omz13\SunCyclePages::isEnabled() == false ) {
               return false;
-          }
-
-          if ( $result == null ) { // hmmm... requested page not found (not in kirby content)
-            return;
           }
 
           if ( property_exists( $result, 'content' ) == false ) {
