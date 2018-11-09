@@ -10,7 +10,7 @@ For a kirby3 site, this plugin [omz13/suncyclepages](https://github.com/omz13/ki
 
 When would you use this plugin?
 
-- The main usecase is for writing blog posts that you want to publish in the future. Write them now, and schedule them to apepar (sunrise) in the future. Ideal for those times when you are away but want to continue a publishing schedule.
+- The main usecase is for writing blog posts that you want to publish in the future. Write them now, and schedule them to appear (sunrise) in the future. Ideal for those times when you are away but want to continue a publishing schedule.
 - Another usecase is for temporary offers or notices. You publish a page, but in the future you want it removed (sunset), or better yet, want it removed and replaced (redirected) to elsewhere that says "too late" (or whatever).
 
 The functional specification:
