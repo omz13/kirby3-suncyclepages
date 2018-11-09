@@ -6,12 +6,12 @@
 
 ### Purpose
 
-For a kirby3 site, this plugin [omz13/suncyclepages](https://github.com/omz13/kirby3-suncyclepages) allows more granular control over the _lifecycle_ of a page to be achieved vis-à-vis pages becoming generally available at a sunrise date and to be withdrawn at a sunset date. This enhances the limited lifecycle options provied by kirby3's `state` (unpublished, draft, and published) to better match that needed certain editorial or regulatory needs, _viz._, unpublished, draft, embargoed (waiting "sunrise"), published ("sunny"), withdrawn ("sunset").
+For a kirby3 site, this plugin [omz13/suncyclepages](https://github.com/omz13/kirby3-suncyclepages) allows more granular control over the _lifecycle_ of a page to be achieved vis-à-vis pages becoming _generally available_ at a "sunrise date" and _withdrawn_ at a "sunset date". This enhances the limited lifecycle options provided by kirby3's `state` (unpublished, draft, and published) to better match that needed certain editorial or regulatory needs, _viz._, unpublished, draft, embargoed (waiting "sunrise"), published ("sunny"), and finally withdrawn ("sunset").
 
 When would you use this plugin?
 
-- The main usecase is for writing blog posts that you want to publish in the future. Write them now, and schedule them to appear (sunrise) in the future. Ideal for those times when you are away but want to continue a publishing schedule.
-- Another usecase is for temporary offers or notices. You publish a page, but in the future you want it removed (sunset), or better yet, want it removed and replaced (redirected) to elsewhere that says "too late" (or whatever).
+- The main use case is for writing blog posts that you want to publish in the future. Write them now, and schedule them to appear (sunrise) in the future. Ideal for those times when you are away but want to continue a publishing schedule.
+- Another use case is for temporary offers or notices. You publish a page, but in the future you want it removed (sunset), or better yet, want it removed and replaced (redirected) to elsewhere that says "too late" (or whatever).
 
 The functional specification:
 
@@ -22,7 +22,7 @@ The functional specification:
 
 #### Why call it suncycle?
 
-There are perhaps, with the benefit of hindsight, betters names such as 'embargo', 'autopublish', 'schedule', etc. However, when this plugin was developed the notion was to follow the lifecycle of a page: sunrise and sunset are well-known terms within SDLC or ILM (although very much less familiar outside this domain), and 'suncycle' was used. I had my head in software mode not journalism mode; it could also be argued that unless you are familiar with  publishing and journalism, terms such as 'embargo' and 'schedule' are also unusual outside that domain.
+There are perhaps, with the benefit of hindsight, better names such as 'embargo', 'autopublish', 'schedule', etc. However, when this plugin was developed the notion was to follow the lifecycle of a page: sunrise and sunset are well-known terms within SDLC or ILM (although very much less familiar outside this domain), and 'suncycle' was used. I had my head in software mode not publishing or journalism mode; it could also be argued that unless you are familiar with publishing and journalism, terms such as 'embargo' and 'schedule' are also unusual outside that domain.
 
 TL;DR: its just a name. Who care's what its called as long as it works. Now [go get me a coffee](https://buymeacoff.ee/omz13) ;-).
 
@@ -83,7 +83,7 @@ The following mechanisms can be used to modify the plugin's behavior.
 
 The plugin uses the following content fields. These are all optional; if missing or empty, they are assumed to be not applicable vis-à-via their indicated functionality.
 
-- `date` - date - optional - the date when the page is to be published, i.e. embargo until this date. If the date field is missing or cannot be resolved, the emargo check will not embargo the page, i.e. failsafe is to not embargo but publish.
+- `date` - date - optional - the date when the page is to be published, i.e. embargo until this date. If the date field is missing or cannot be resolved, the embargo check will not embargo the page, i.e. failsafe is to not embargo but publish.
 
 - `skipembargo` - boolean - optional (default `false`) - if `true`, the embargo check (sunrise) is skipped (not performed) for this page.
 
@@ -105,7 +105,7 @@ If the kirby site is in debug mode:
 
 The following would be added to a template normally use by a page that would be under control, c.f. `embargoCheckWhenTemplateIs` and `embargoCheckWhenParentIs`.
 
-The `skipembargo` section is optional, and you would only add this if you wanted to be able to explicitly uncontrol a page from an emnbargo check (sunrise).
+The `skipembargo` section is optional, and you would only add this if you wanted to be able to explicitly un-control a page from an embargo check (sunrise).
 
 The `sunset` and `sunsetto` elements are mandatory for sunset (withdrawal) to work.
 
@@ -131,7 +131,7 @@ sunsetto:
 
 #### Example Use in a collection
 
-In the kirby3 starterkit you don't want the list of blog post to include any that are under embargo (waiting sunrise) or are sunset... it is very simple to implement.
+In the kirby3 StarterKit you don't want the list of blog post to include any that are under embargo (waiting sunrise) or are sunset... it is very simple to implement.
 
 `site/collections/articles.php` looks like this:
 
