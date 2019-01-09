@@ -2,6 +2,16 @@
 VERSION 0  ALPHA RELEASE
 ========================
 
+   Version 0.4 - beta
+      09/01/2019 02:10  0.4.0  initial release
+         c1e7074 Docs: Coffee, Beer, etc
+         109002e Chore: stan
+         84a3ecc Feat: helper blueprint
+         d822e10 Chore: toolchain fix
+         881d547 Chore: Kirby RC2 or better, composer update
+         c7d1f94 Docs: edit stupid mistakes
+         ed812f2 Fixed micro typo
+
    Version 0.3 - beta release
       08/11/2018 17:25  0.3.0  initial release
          b70321f Chore: composer update
