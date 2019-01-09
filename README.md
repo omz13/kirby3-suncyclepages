@@ -1,6 +1,17 @@
 # Kirby3 SunCyclePages
 
-**Requirement:** Kirby 3
+**Requirement:** Kirby 3.0 RC2 or better
+
+## Coffee, Beer, etc.
+
+This plugin is free but if you use it in a commercial project to show your support you are welcome to:
+- [make a donation 🍻](https://www.paypal.me/omz13/10) or
+- [buy me ☕☕☕](https://buymeacoff.ee/omz13) or
+- [buy a Kirby license using this affiliate link](https://a.paddle.com/v2/click/1129/36191?link=1170)
+
+### Why call it suncycle?
+
+There are perhaps, with the benefit of hindsight, better names such as 'embargo', 'autopublish', 'schedule', etc. However, when this plugin was developed the notion was to follow the lifecycle of a page: sunrise and sunset are well-known terms within SDLC or ILM (although very much less familiar outside this domain), and 'suncycle' was used. I had my head in software mode not publishing or journalism mode; it could also be argued that unless you are familiar with publishing and journalism, terms such as 'embargo' and 'schedule' are also unusual outside that domain.
 
 ## Documentation
 
@@ -20,12 +31,6 @@ The functional specification:
 - Pages can be withdrawn at a specific date ("sunset"). Any attempt to view the page after that date will yield a `410` [Gone] and the standard error page, or, a `301` [Moved Permanently] to a specified location on a per-page basis.
 - A debug mode can be enabled to include a header in the response to indicate that a page was under embargo or has sunset, c.f. `X-SUNCYCLE`.
 
-#### Why call it suncycle?
-
-There are perhaps, with the benefit of hindsight, better names such as 'embargo', 'autopublish', 'schedule', etc. However, when this plugin was developed the notion was to follow the lifecycle of a page: sunrise and sunset are well-known terms within SDLC or ILM (although very much less familiar outside this domain), and 'suncycle' was used. I had my head in software mode not publishing or journalism mode; it could also be argued that unless you are familiar with publishing and journalism, terms such as 'embargo' and 'schedule' are also unusual outside that domain.
-
-TL;DR: its just a name. Who care's what its called as long as it works. Now [go get me a coffee](https://buymeacoff.ee/omz13) ;-).
-
 #### Caveat
 
 Kirby3 is under beta, therefore this plugin, and indeed kirby3 itself, may or may not play nicely with each other, or indeed work at all: use it for testing purposes only; if you use it in production then you should be aware of the risks and know what you are doing.
@@ -38,7 +43,7 @@ The non-binding list of planned features and implementation notes are:
 - [x] Basic debugging
 - [ ] If the time is not specified (just the date), default sensibly.
 - [ ] Better debugging
-- [ ] Sections for blueprints
+- [x] Blueprints
 
 ### Installation
 
@@ -178,12 +183,3 @@ This plugin is provided "as is" with no guarantee. Use it at your own risk and a
 [MIT](https://opensource.org/licenses/MIT)
 
 You are prohibited from using this plugin in any project that promotes racism, sexism, homophobia, animal abuse, violence or any other form of hate speech.
-
-### Buy Me A Coffee
-
-To show your support for this project you are welcome to [buy me a coffee](https://buymeacoff.ee/omz13).
-
-<!-- If you are using this plugin on a kirby3 site that has a Personal licence, to show your support for this project you are welcome to [buy me a coffee](https://buymeacoff.ee/omz13).
-
-If you are using this plugin with a kirby3 site that has a Pro licence, to show your support for this project you are greatly encouraged to [buy me a coffee](https://buymeacoff.ee/omz13).
--->
