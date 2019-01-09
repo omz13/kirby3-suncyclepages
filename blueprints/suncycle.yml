@@ -1,0 +1,29 @@
+type: group
+fields:
+  skipembargo:
+    type: toggle
+    default: off
+    text:
+      -
+        en: Embargo until publication date
+        fr: Embargo
+      -
+        en: Uncontrolled
+        fr: Pas contrôler
+    label:
+      en: Release Control
+      fr: Contrôle de publication
+  sunset:
+    type: date
+    time: true
+    label:
+      en: Withdraw (Sunset) at
+      fr: Retirer à
+  sunsetto:
+    type: select
+    label:
+      en: Redirect after withdrawn (Sunset) to
+      fr: Rediriger vers
+    options: query
+    query:
+      fetch: site.pages

@@ -93,6 +93,39 @@ The plugin uses the following content fields. These are all optional; if missing
 
 - `sunsetto` page - optional - the name of a page to be used for `301` redirects when the page is sunset; if not specified a `404` is given.
 
+#### Blueprints
+
+This plugin provides the following built-in blueprints (e.g. to make adding fields into the panel's blueprint `blueprint/site.yml` easier):
+
+- `omz13/suncycle` - a group of fields to be used as an `extends` to make entering embrgo parameters easy. For example, it would be appened into starterkit's `site/blueprints/pages/article.yml` so:
+
+```yaml
+sidebar:
+  meta:
+    type: fields
+    fields:
+      date:
+        type: date
+        time: true
+        default: now
+        label: Publication Date
+      author:
+        type: users
+      tags:
+        type: tags
+        options: query
+        query:
+          fetch: site.tags.toStructure.sortBy("name", "asc")
+          text: "{{ structureItem.name }}"
+          value: "{{ structureItem.value }}"
+
+      extends: omz13/suncycle
+```
+
+This built-in blueprint is localized for `en` and `fr`; PRs for others are welcome!
+
+### Use
+
 #### Debug mode
 
 If the kirby site is in debug mode:
@@ -100,34 +133,6 @@ If the kirby site is in debug mode:
 - If a page is embargoed (waiting for sunrise), the `404` page will include an additional header `X-SUNCYCLE: isUnderembargo`.
 
 - If a page has been withdrawn (sunset), the `410` response will include an additional header `X-SUNCYCLE: isSunset`, and the `301` a `X-SUNCYCLE: isSunset <to>` where `<to>` is the name of the `sunsetto` page.
-
-#### Example Blueprint
-
-The following would be added to a template normally use by a page that would be under control, c.f. `embargoCheckWhenTemplateIs` and `embargoCheckWhenParentIs`.
-
-The `skipembargo` section is optional, and you would only add this if you wanted to be able to explicitly un-control a page from an embargo check (sunrise).
-
-The `sunset` and `sunsetto` elements are mandatory for sunset (withdrawal) to work.
-
-```yaml
-skipembargo:
-  type: toggle
-  default: off
-  text:
-    - Embargo until publication date
-    - Uncontrolled
-  label: Release Control
-sunset:
-  type: date
-  time: true
-  label: Withdraw (Sunset) at
-sunsetto:
-  type: select
-  label: Redirect after withdrawn (Sunset) to
-  options: query
-  query:
-    fetch: site.pages
-```
 
 #### Example Use in a collection
 

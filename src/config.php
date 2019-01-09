@@ -11,6 +11,10 @@ Kirby::plugin(
         'embargoCheckWhenTemplateIs' => [ 'article', 'pfo-article' ],
         'embargoCheckWhenParentIs' => [ 'blog' ],
       ],
+      'blueprints' => [
+        'omz13/suncycle' => dirname( __FILE__, 2 ) . '/blueprints/suncycle.yml',
+      ],
+
       'hooks'        => [
         // phpcs:ignore
         'route:after' => function ( $route, string $path, string $method, $result ) {
