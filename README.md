@@ -1,6 +1,6 @@
 # Kirby3 SunCyclePages
 
-**Requirement:** Kirby 3.0 RC2 or better
+**Requirement:** Kirby 3.0
 
 ## Coffee, Beer, etc.
 
@@ -30,10 +30,6 @@ The functional specification:
 - Pages can be embargoed until being made generally available a specified date ("sunrise"). Any attempt to view the page before that date will yield the standard error page and a `404` [Not Found] code.
 - Pages can be withdrawn at a specific date ("sunset"). Any attempt to view the page after that date will yield a `410` [Gone] and the standard error page, or, a `301` [Moved Permanently] to a specified location on a per-page basis.
 - A debug mode can be enabled to include a header in the response to indicate that a page was under embargo or has sunset, c.f. `X-SUNCYCLE`.
-
-#### Caveat
-
-Kirby3 is under beta, therefore this plugin, and indeed kirby3 itself, may or may not play nicely with each other, or indeed work at all: use it for testing purposes only; if you use it in production then you should be aware of the risks and know what you are doing.
 
 #### Roadmap
 
