@@ -2,6 +2,10 @@
 VERSION 1  RELEASE
 ==================
 
+   Version 1.1 - Release
+      15/02/2019 20:57  1.1.0  initial release
+         bc4a330 Feat: install by zip or submodule
+
    Version 1.0 - Release
       15/01/2019 20:00  1.0.0  initial release
          f7fe409 Chore: Kirby 3.0
