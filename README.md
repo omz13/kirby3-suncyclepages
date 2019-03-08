@@ -43,28 +43,11 @@ The non-binding list of planned features and implementation notes are:
 
 ### Installation
 
-#### via composer
+Pick one of the following per your epistemological model:
 
-If your kirby3-based site is managed using-composer, simply invoke `composer require omz13/kirby3-suncyclepages`, or add `omz13/kirby3-suncyclepages` to the "require" component of your site's `composer.json` as necessary, e.g. to be on the bleeding-edge:
-
-```yaml
-"require": {
-  ...
-  "omz13/kirby3-suncyclepages": "dev-master as 1.0.0",
-  ...
-}
-```
-#### via git
-
-Clone github.com/omz13/kirby3-suncyclepages into your `site/plugins` and then in `site/plugins/kirby3-suncyclepages` invoke ``composer update --no-dev`` to generate the `vendor` folder and the magic within.
-
-```sh
-$ git clone github.com/omz13/kirby3-suncyclepages site/plugins/kirby3-suncyclepages
-$ cd site/plugins/kirby3-suncyclepages
-$ composer update --no-dev
-```
-
-If your project itself is under git, then you need to add the plugin as a submodule and possibly automate the composer update; it is assumed if you are doing this that you know what to do.
+- `composer require omz13/kirby3-suncyclepages`; the plugin will automagically appear in `site/plugins`.
+- Download a zip of the latest release - [master.zip](https://github.com/omz13/kirby3-suncyclepages/archive/master.zip) - and copy the contents to your `site/plugins/kirby3-suncyclepages`.
+- `git submodule add https://github.com/omz13/kirby3-suncyclepages.git site/plugins/kirby3-suncyclepages`.
 
 ### Configuration
 
